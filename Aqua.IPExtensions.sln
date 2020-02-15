@@ -9,9 +9,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7336E15D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "others", "others", "{13A614BB-90C3-4440-ABE7-ACE33B7ECC68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.IPExtensions", "Aqua.IPExtensions\Aqua.IPExtensions.csproj", "{0F15881D-C2C7-4EA4-84F8-85DF496D7DD5}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F15881D-C2C7-4EA4-84F8-85DF496D7DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F15881D-C2C7-4EA4-84F8-85DF496D7DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F15881D-C2C7-4EA4-84F8-85DF496D7DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F15881D-C2C7-4EA4-84F8-85DF496D7DD5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0F15881D-C2C7-4EA4-84F8-85DF496D7DD5} = {2B243C4B-4AD4-446A-B78A-CE97DC0E48E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11938979-3B2B-4342-AD10-75D971844AA7}
