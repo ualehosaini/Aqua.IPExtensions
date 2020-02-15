@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "others", "others", "{13A614
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.IPExtensions", "Aqua.IPExtensions\Aqua.IPExtensions.csproj", "{0F15881D-C2C7-4EA4-84F8-85DF496D7DD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.IPExtensions.Tests", "Aqua.IPExtensions.Tests\Aqua.IPExtensions.Tests.csproj", "{C1010475-8104-4D27-AAF9-ACAD3CEEF185}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,12 +23,17 @@ Global
 		{0F15881D-C2C7-4EA4-84F8-85DF496D7DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F15881D-C2C7-4EA4-84F8-85DF496D7DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F15881D-C2C7-4EA4-84F8-85DF496D7DD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1010475-8104-4D27-AAF9-ACAD3CEEF185}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1010475-8104-4D27-AAF9-ACAD3CEEF185}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1010475-8104-4D27-AAF9-ACAD3CEEF185}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1010475-8104-4D27-AAF9-ACAD3CEEF185}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0F15881D-C2C7-4EA4-84F8-85DF496D7DD5} = {2B243C4B-4AD4-446A-B78A-CE97DC0E48E6}
+		{C1010475-8104-4D27-AAF9-ACAD3CEEF185} = {7336E15D-1B01-4157-8532-FEFE4095D5B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11938979-3B2B-4342-AD10-75D971844AA7}
