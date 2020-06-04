@@ -33,5 +33,13 @@ namespace Aqua.IPExtensions.Tests
         {
             Assert.False(ip.IsValidIPv4());
         }
+
+        [Theory]
+        [InlineData("169.254.1.99")]
+        [InlineData("169.254.0.88")]
+        public void IsIPv4LinkLocalAddress_Valid(string ip)
+        {
+            Assert.True(ip.IsIPv4LinkLocalAddress());
+        }
     }
 }

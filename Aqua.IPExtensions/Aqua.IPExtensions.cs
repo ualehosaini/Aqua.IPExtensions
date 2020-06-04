@@ -25,5 +25,15 @@ namespace Aqua.IPExtensions
 
             return false;
         }
+
+        /// <summary>
+        /// To validate an IPv4 is a LinkLocal Ip (169.254.x.x)
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsIPv4LinkLocalAddress(this string ip)
+        {
+            return ip.IsValidIPv4() && ip.Substring(0, 7) == "169.254";
+        }
     }
 }
