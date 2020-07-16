@@ -41,5 +41,20 @@ namespace Aqua.IPExtensions.Tests
         {
             Assert.True(ip.IsIPv4LinkLocalAddress());
         }
+
+        [Theory]
+        [InlineData("127.0.0.1")]
+        public void IsIPv4LoopBack_Valid(string ip)
+        {
+            Assert.True(ip.IsIPv4LoopBack());
+        }
+
+        [Theory]
+        [InlineData("200.254.1.99")]
+        [InlineData("10.10.0.88")]
+        public void IsIPv4LoopBack_InValid(string ip)
+        {
+            Assert.False(ip.IsIPv4LoopBack());
+        }
     }
 }
