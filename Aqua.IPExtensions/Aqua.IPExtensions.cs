@@ -55,5 +55,15 @@ namespace Aqua.IPExtensions
         {
             return ip.IsIPv4LoopBack();
         }
+
+        /// <summary>
+        /// To validate an IPv4 is 0.0.0.0
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsIPv4IsZero(this string ip)
+        {
+            return ip == "0.0.0.0";
+        }
     }
 }
