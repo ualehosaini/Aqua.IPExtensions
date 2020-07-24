@@ -45,5 +45,15 @@ namespace Aqua.IPExtensions
         {
             return ip == "127.0.0.1";
         }
+
+        /// <summary>
+        /// To validate an IPv4 is a LocalHost IP (alternative for LoopBack)
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsLocalHostv4(this string ip)
+        {
+            return ip.IsIPv4LoopBack();
+        }
     }
 }

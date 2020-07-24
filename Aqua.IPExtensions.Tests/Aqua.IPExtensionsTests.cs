@@ -64,5 +64,20 @@ namespace Aqua.IPExtensions.Tests
         {
             Assert.False(ip.IsIPv4LoopBack());
         }
+
+        [Theory]
+        [InlineData("127.0.0.1")]
+        public void IsLocalHostv4_Valid(string ip)
+        {
+            Assert.True(ip.IsLocalHostv4());
+        }
+
+        [Theory]
+        [InlineData("200.254.1.99")]
+        [InlineData("10.10.0.88")]
+        public void IsLocalHostv4_InValid(string ip)
+        {
+            Assert.False(ip.IsLocalHostv4());
+        }
     }
 }
