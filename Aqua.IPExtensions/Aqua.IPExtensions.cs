@@ -65,5 +65,35 @@ namespace Aqua.IPExtensions
         {
             return ip == "0.0.0.0";
         }
+
+        /// <summary>
+        /// To validate an IPv4 Subnet Mask
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsValidSubnetIPv4Mask(this string mask)
+        {
+            if (string.IsNullOrWhiteSpace(mask))
+                return false;
+
+            string[] maskParts = mask.Split('/');
+
+            if (maskParts.Length != 2)
+            {
+                return false;
+            }
+
+            if (!maskParts[0].IsValidIPv4())
+            {
+                return false;
+            }
+
+            if (int.Parse(maskParts[1]) < 0 || int.Parse(maskParts[1]) > 32)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

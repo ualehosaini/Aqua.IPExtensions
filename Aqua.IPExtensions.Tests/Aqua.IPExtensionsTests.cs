@@ -95,5 +95,23 @@ namespace Aqua.IPExtensions.Tests
         {
             Assert.False(ip.IsIPv4IsZero());
         }
+
+        [Theory]
+        [InlineData("192.168.5.85/10")]
+        [InlineData("10.200.240.50/20")]
+        [InlineData("10.200.240.50/24")]
+        public void IsValidSubnetIPv4Mask_Valid(string ip)
+        {
+            Assert.True(ip.IsValidSubnetIPv4Mask());
+        }
+
+        [Theory]
+        [InlineData("192.168.5.85/400")]
+        [InlineData("10.200.240.50/300")]
+        [InlineData("10.200.240.500/24")]
+        public void IsValidSubnetIPv4Mask_InValid(string ip)
+        {
+            Assert.False(ip.IsValidSubnetIPv4Mask());
+        }
     }
 }
