@@ -95,5 +95,27 @@ namespace Aqua.IPExtensions
 
             return true;
         }
+
+        /// <summary>
+        /// To validate an IPv6 string
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsValidIPv6(this string ip)
+        {
+            if (string.IsNullOrWhiteSpace(ip))
+            {
+                return false;
+            }
+
+            IPAddress ipTemp;
+            if (IPAddress.TryParse(ip, out ipTemp))
+            {
+                return ipTemp.AddressFamily == AddressFamily.InterNetworkV6;
+            }
+
+            return false;
+
+        }
     }
 }

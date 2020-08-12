@@ -113,5 +113,32 @@ namespace Aqua.IPExtensions.Tests
         {
             Assert.False(ip.IsValidSubnetIPv4Mask());
         }
+
+        [Theory]
+        [InlineData("2001:0db8:85a3:0000:0000:8a2e:0370:7334")]
+        [InlineData("2001:0db8:85a3:0000:0000:8a2e::5")]
+        [InlineData("2001:0db8:85a3:0000:0000::2:7335")]
+        [InlineData("::1234:5678")]
+        [InlineData("2001:db8::")]
+        [InlineData("1::5")]
+        [InlineData("::")]
+        [InlineData("::1")]
+        public void IsValidIPv6_Valid(string ip)
+        {
+            Assert.True(ip.IsValidIPv6());
+        }
+
+        [Theory]
+        [InlineData("259.168.4.254")]
+        [InlineData("2001:0db8:85a3:0000:0000:8a2e:0370")]
+        [InlineData("1200:0000:AB00:1234:O000:2552:7777:1313")]
+        [InlineData("0.0.0.5")]
+        [InlineData("Foo")]
+        [InlineData("7")]
+        public void IsValidIPv6_InValid(string ip)
+        {
+            Assert.False(ip.IsValidIPv6());
+        }
+
     }
 }
