@@ -140,5 +140,22 @@ namespace Aqua.IPExtensions.Tests
             Assert.False(ip.IsValidIPv6());
         }
 
+        [Theory]
+        [InlineData("fe81:ffff:ffff:ffff:ffff:ffff:1111:ffff")]
+        [InlineData("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")]
+        public void IsIPv6LinkLocalAddress_Valid(string ip)
+        {
+            Assert.True(ip.IsIPv6LinkLocalAddress());
+        }
+
+        [Theory]
+        [InlineData("fe79:ffff:ffff:ffff:ffff:ffff:1111:ffff")]
+        [InlineData("fe55:ffff:ffff:ffff:ffff:ffff:ffff:ffff")]
+        public void IsIPv6LinkLocalAddress_InValid(string ip)
+        {
+            Assert.False(ip.IsIPv6LinkLocalAddress());
+        }
+
+
     }
 }

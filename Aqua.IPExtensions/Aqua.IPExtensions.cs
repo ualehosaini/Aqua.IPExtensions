@@ -117,5 +117,32 @@ namespace Aqua.IPExtensions
             return false;
 
         }
+
+        /// <summary>
+        /// To validate an IPv6 is a LinkLocal Ip (fe80:: to febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff)
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsIPv6LinkLocalAddress(this string ip)
+        {
+            if (string.IsNullOrWhiteSpace(ip))
+            {
+                return false;
+            }
+
+            if (ip.Length >= 4 && ip.IsValidIPv6())
+            {
+                int intTemp;
+                if (int.TryParse(ip.Substring(0, 4), System.Globalization.NumberStyles.HexNumber, null, out intTemp))
+                {
+                    // reference: https://en.wikipedia.org/wiki/Reserved_IP_addresses#IPv6
+
+                    return intTemp >= int.Parse("fe80", System.Globalization.NumberStyles.HexNumber)
+                        && intTemp <= int.Parse("febf", System.Globalization.NumberStyles.HexNumber);
+                }
+            }
+
+            return false;
+        }
     }
 }
