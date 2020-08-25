@@ -156,6 +156,20 @@ namespace Aqua.IPExtensions.Tests
             Assert.False(ip.IsIPv6LinkLocalAddress());
         }
 
+        [Theory]
+        [InlineData("::1")]
+        public void IsIPv6LoopBack_Valid(string ip)
+        {
+            Assert.True(ip.IsIPv6LoopBack());
+        }
+
+        [Theory]
+        [InlineData("fe79:ffff:ffff:ffff:ffff:ffff:1111:ffff")]
+        [InlineData("fe55:ffff:ffff:ffff:ffff:ffff:ffff:ffff")]
+        public void IsIPv6LoopBack_InValid(string ip)
+        {
+            Assert.False(ip.IsIPv6LoopBack());
+        }
 
     }
 }

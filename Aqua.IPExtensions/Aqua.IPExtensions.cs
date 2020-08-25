@@ -144,5 +144,17 @@ namespace Aqua.IPExtensions
 
             return false;
         }
+
+        /// <summary>
+        /// To validate an IPv6 is a LoopBack IP (::1)
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsIPv6LoopBack(this string ip)
+        {
+            return ip == "::1";
+        }
+
+
     }
 }
