@@ -155,6 +155,15 @@ namespace Aqua.IPExtensions
             return ip == "::1";
         }
 
+        /// <summary>
+        /// To validate an IPv4 or IPv6 string
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsValidIPv4Orv6(this string ip)
+        {
+            return ip.IsValidIPv4() || ip.IsValidIPv6();
+        }
 
     }
 }
