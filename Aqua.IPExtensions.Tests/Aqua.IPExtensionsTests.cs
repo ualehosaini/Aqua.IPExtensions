@@ -210,5 +210,24 @@ namespace Aqua.IPExtensions.Tests
             Assert.False(ip.IsValidIPv4Orv6());
         }
 
+        [Theory]
+        [InlineData("127.0.0.1")]
+        [InlineData("::1")]
+        public void IsLoopBack_Valid(string ip)
+        {
+            Assert.True(ip.IsLoopBack());
+        }
+
+        [Theory]
+        [InlineData("200.254.1.99")]
+        [InlineData("10.10.0.88")]
+        [InlineData("fe79:ffff:ffff:ffff:ffff:ffff:1111:ffff")]
+        [InlineData("fe55:ffff:ffff:ffff:ffff:ffff:ffff:ffff")]
+        public void IsLoopBack_InValid(string ip)
+        {
+            Assert.False(ip.IsLoopBack());
+        }
+
+
     }
 }

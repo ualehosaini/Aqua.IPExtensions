@@ -165,5 +165,15 @@ namespace Aqua.IPExtensions
             return ip.IsValidIPv4() || ip.IsValidIPv6();
         }
 
+        /// <summary>
+        /// To validate an IPv4 or IPv6 is a LoopBack IP
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsLoopBack(this string ip)
+        {
+            return ip.IsIPv4LoopBack() || ip.IsIPv6LoopBack();
+        }
+
     }
 }
