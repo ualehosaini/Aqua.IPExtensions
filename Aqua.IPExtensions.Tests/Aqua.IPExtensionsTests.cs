@@ -228,6 +228,20 @@ namespace Aqua.IPExtensions.Tests
             Assert.False(ip.IsLoopBack());
         }
 
+        [Theory]
+        [InlineData("::")]
+        [InlineData("0000:0000:0000:0000:0000:0000:0000:0000")]
+        public void IsIPv6IsZero_Valid(string ip)
+        {
+            Assert.True(ip.IsIPv6IsZero());
+        }
 
+        [Theory]
+        [InlineData("fe79:ffff:ffff:ffff:ffff:ffff:1111:ffff")]
+        [InlineData("fe55:ffff:ffff:ffff:ffff:ffff:ffff:ffff")]
+        public void IsIPv6IsZero_InValid(string ip)
+        {
+            Assert.False(ip.IsIPv6IsZero());
+        }
     }
 }
