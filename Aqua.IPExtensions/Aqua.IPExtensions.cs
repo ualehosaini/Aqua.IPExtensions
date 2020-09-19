@@ -185,5 +185,16 @@ namespace Aqua.IPExtensions
             return ip == "::" || ip == "0000:0000:0000:0000:0000:0000:0000:0000";
         }
 
+        /// <summary>
+        /// To validate an is a LinkLocal Ip
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsLinkLocalAddress(this string ip)
+        {
+            return ip.IsIPv4LinkLocalAddress() || ip.IsIPv6LinkLocalAddress();
+        }
+
+
     }
 }
