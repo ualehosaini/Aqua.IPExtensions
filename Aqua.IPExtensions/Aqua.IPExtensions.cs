@@ -195,6 +195,14 @@ namespace Aqua.IPExtensions
             return ip.IsIPv4LinkLocalAddress() || ip.IsIPv6LinkLocalAddress();
         }
 
-
+        /// <summary>
+        /// To validate an IPv6 is a LocalHost IP (alternative for LoopBack)
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsLocalHostv6(this string ip)
+        {
+            return ip.IsIPv6LoopBack();
+        }
     }
 }

@@ -264,5 +264,19 @@ namespace Aqua.IPExtensions.Tests
             Assert.False(ip.IsLinkLocalAddress());
         }
 
+        [Theory]
+        [InlineData("::1")]
+        public void IsLocalHostv6_Valid(string ip)
+        {
+            Assert.True(ip.IsLocalHostv6());
+        }
+
+        [Theory]
+        [InlineData("fe79:ffff:ffff:ffff:ffff:ffff:1111:ffff")]
+        [InlineData("fe55:ffff:ffff:ffff:ffff:ffff:ffff:ffff")]
+        public void IsLocalHostv6_InValid(string ip)
+        {
+            Assert.False(ip.IsLocalHostv6());
+        }
     }
 }
