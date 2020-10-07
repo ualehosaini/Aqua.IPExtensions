@@ -297,5 +297,24 @@ namespace Aqua.IPExtensions.Tests
             Assert.False(ip.IsLocalHost());
         }
 
+        [Theory]
+        [InlineData("0.0.0.0")]
+        [InlineData("::")]
+        [InlineData("0000:0000:0000:0000:0000:0000:0000:0000")]
+        public void IsIPisZero_Valid(string ip)
+        {
+            Assert.True(ip.IsIPisZero());
+        }
+
+        [Theory]
+        [InlineData("200.254.1.99")]
+        [InlineData("10.10.0.88")]
+        [InlineData("fe79:ffff:ffff:ffff:ffff:ffff:1111:ffff")]
+        [InlineData("fe55:ffff:ffff:ffff:ffff:ffff:ffff:ffff")]
+        public void IsIPisZero_InValid(string ip)
+        {
+            Assert.False(ip.IsIPisZero());
+        }
+
     }
 }

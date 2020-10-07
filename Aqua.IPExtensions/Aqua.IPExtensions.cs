@@ -215,5 +215,14 @@ namespace Aqua.IPExtensions
             return ip.IsLocalHostv4() || ip.IsLocalHostv6();
         }
 
+        /// <summary>
+        /// To validate an IP is 0.0.0.0 OR 0000:0000:0000:0000:0000:0000:0000:0000
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsIPisZero(this string ip)
+        {
+            return ip.IsIPv4IsZero() || ip.IsIPv6IsZero();
+        }
     }
 }
