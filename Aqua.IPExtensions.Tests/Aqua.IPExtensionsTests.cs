@@ -316,5 +316,27 @@ namespace Aqua.IPExtensions.Tests
             Assert.False(ip.IsIPisZero());
         }
 
+        [Theory]
+        [InlineData("2001:db8:abcd:0012::0/10")]
+        [InlineData("2001:db8:abcd:0012::0/24")]
+        [InlineData("2001:db8:abcd:0012::0/30")]
+        [InlineData("2001:db8:abcd:0012::0/64")]
+        [InlineData("2001:db8:abcd:0012::0/120")]
+        public void IsValidSubnetIPv6Mask_Valid(string ip)
+        {
+            Assert.True(ip.IsValidSubnetIPv6Mask());
+        }
+
+        [Theory]
+        [InlineData("z001:db8:abcd:0012::0/10")]
+        [InlineData("2001:db8:abcd:0012::0/2400")]
+        [InlineData("mmmm:db8:abcd:0012::0/30")]
+        [InlineData("tttt:db8:abcd:0012::0/64")]
+        [InlineData("2001:db8:abcd:0012::0/600")]
+        public void IsValidSubnetIPv6Mask_InValid(string ip)
+        {
+            Assert.False(ip.IsValidSubnetIPv6Mask());
+        }
+
     }
 }

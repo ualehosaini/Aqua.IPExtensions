@@ -224,5 +224,32 @@ namespace Aqua.IPExtensions
         {
             return ip.IsIPv4IsZero() || ip.IsIPv6IsZero();
         }
+
+        /// <summary>
+        /// To validate an IPv6 Subnet Mask
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsValidSubnetIPv6Mask(this string mask)
+        {
+            string[] maskParts = mask.Split('/');
+
+            if (maskParts.Length != 2)
+            {
+                return false;
+            }
+
+            if (!maskParts[0].IsValidIPv6())
+            {
+                return false;
+            }
+
+            if (int.Parse(maskParts[1]) < 0 || int.Parse(maskParts[1]) > 128)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
