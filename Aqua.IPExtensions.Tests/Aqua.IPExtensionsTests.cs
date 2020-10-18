@@ -338,5 +338,32 @@ namespace Aqua.IPExtensions.Tests
             Assert.False(ip.IsValidSubnetIPv6Mask());
         }
 
+        [Theory]
+        [InlineData("192.168.5.85/10")]
+        [InlineData("10.200.240.50/20")]
+        [InlineData("10.200.240.50/24")]
+        [InlineData("2001:db8:abcd:0012::0/10")]
+        [InlineData("2001:db8:abcd:0012::0/24")]
+        [InlineData("2001:db8:abcd:0012::0/30")]
+        [InlineData("2001:db8:abcd:0012::0/64")]
+        [InlineData("2001:db8:abcd:0012::0/120")]
+        public void IsValidSubnetMask_Valid(string ip)
+        {
+            Assert.True(ip.IsValidSubnetMask());
+        }
+
+        [Theory]
+        [InlineData("192.168.5.85/400")]
+        [InlineData("10.200.240.50/300")]
+        [InlineData("10.200.240.500/24")]
+        [InlineData("z001:db8:abcd:0012::0/10")]
+        [InlineData("2001:db8:abcd:0012::0/2400")]
+        [InlineData("mmmm:db8:abcd:0012::0/30")]
+        [InlineData("tttt:db8:abcd:0012::0/64")]
+        [InlineData("2001:db8:abcd:0012::0/600")]
+        public void IsValidSubnetMask_InValid(string ip)
+        {
+            Assert.False(ip.IsValidSubnetMask());
+        }
     }
 }

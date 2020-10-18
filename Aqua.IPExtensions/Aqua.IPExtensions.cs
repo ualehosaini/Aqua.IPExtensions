@@ -251,5 +251,15 @@ namespace Aqua.IPExtensions
 
             return true;
         }
+
+        /// <summary>
+        /// To validate an IP Subnet Mask (both IPv4 and IPv6)
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsValidSubnetMask(this string mask)
+        {
+            return mask.IsValidSubnetIPv4Mask() || mask.IsValidSubnetIPv6Mask();
+        }
     }
 }
