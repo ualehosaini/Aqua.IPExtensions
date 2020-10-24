@@ -1,4 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections;
+using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 
 namespace Aqua.IPExtensions
@@ -260,6 +263,66 @@ namespace Aqua.IPExtensions
         public static bool IsValidSubnetMask(this string mask)
         {
             return mask.IsValidSubnetIPv4Mask() || mask.IsValidSubnetIPv6Mask();
+        }
+
+        /// <summary>
+        /// Validate an IP address is belonging to a Subnet
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="mask"></param>
+        /// <returns></returns>
+        public static bool IsBelongsToSubnet(this IPAddress address, string mask)
+        {
+            if (!mask.IsValidSubnetMask())
+            {
+                return false;
+            }
+
+            string[] maskParts = mask.Split('/');
+
+            var maskAddressPart = IPAddress.Parse(maskParts[0]);
+
+            if (maskAddressPart.AddressFamily != address.AddressFamily) // IP version missmatch
+            {
+                return false;
+            }
+
+            int maskLength = int.Parse(maskParts[1]);
+
+            if (maskAddressPart.AddressFamily == AddressFamily.InterNetwork)
+            {
+                var maskAddressBits = BitConverter.ToUInt32(maskAddressPart.GetAddressBytes().Reverse().ToArray(), 0);
+
+                var ipAddressBits = BitConverter.ToUInt32(address.GetAddressBytes().Reverse().ToArray(), 0);
+
+                uint m = uint.MaxValue << (32 - maskLength);
+
+                return (maskAddressBits & m) == (ipAddressBits & m);
+            }
+
+            if (maskAddressPart.AddressFamily == AddressFamily.InterNetworkV6)
+            {
+                var maskAddressBits = new BitArray(maskAddressPart.GetAddressBytes());
+
+                var ipAddressBits = new BitArray(address.GetAddressBytes());
+
+                if (maskAddressBits.Length != ipAddressBits.Length)
+                {
+                    throw new ArgumentException("Missmatch in IP Address and Subnet Mask");
+                }
+
+                for (int maskIndex = 0; maskIndex < maskLength; maskIndex++)
+                {
+                    if (ipAddressBits[maskIndex] != maskAddressBits[maskIndex])
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

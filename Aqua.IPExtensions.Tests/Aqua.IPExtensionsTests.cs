@@ -1,3 +1,4 @@
+using System.Net;
 using Xunit;
 
 namespace Aqua.IPExtensions.Tests
@@ -365,5 +366,40 @@ namespace Aqua.IPExtensions.Tests
         {
             Assert.False(ip.IsValidSubnetMask());
         }
+
+        [Theory]
+        [InlineData("192.168.5.1", "192.168.5.85/10")]
+        [InlineData("192.168.5.11", "192.168.5.85/10")]
+        [InlineData("10.200.240.5", "10.200.240.50/20")]
+        [InlineData("10.200.240.32", "10.200.240.50/24")]
+        [InlineData("10.200.240.22", "10.200.240.50/24")]
+        [InlineData("10.200.240.1", "10.200.240.50/24")]
+        [InlineData("2001:0DB8:DDDD:0012:0000:1111:0000:0000", "2001:db8:abcd:0012::0/10")]
+        [InlineData("2001:0DB8:ABCD:0012:1111:FFFF:FFFF:FFFF", "2001:db8:abcd:0012::0/24")]
+        [InlineData("2001:0DB8:ABCD:1111:1111:0000:0000:0001", "2001:db8:abcd:0012::0/30")]
+        [InlineData("2001:0DB8:ABCD:0012:FFFF:FFFF:FFFF:FFF1", "2001:db8:abcd:0012::0/64")]
+        [InlineData("2001:0DB8:ABCD:0012:0000:0000:0000:0001", "2001:db8:abcd:0012::0/120")]
+        public void IsBelongsToSubnet_Valid(string ip, string mask)
+        {
+            Assert.True(IPAddress.Parse(ip).IsBelongsToSubnet(mask));
+        }
+
+        [Theory]
+        [InlineData("192.168.3.200", "192.168.5.85/24")]
+        [InlineData("192.168.6.0", "192.168.5.85/24")]
+        [InlineData("10.0.0.1", "10.128.240.50/30")]
+        [InlineData("10.4.4.42", "10.128.240.50/30")]
+        [InlineData("10.128.239.20", "10.128.240.50/30")]
+        [InlineData("10.127.245.53", "10.128.240.50/30")]
+        [InlineData("2001:0DB8:ABCD:0000:0000:FFFF:0011:FFFF", "2001:db8:abcd:0011::0/64")]
+        [InlineData("2001:0DB8:ABCD:0013:0000:0000:0000:BBBB", "2001:db8:abcd:0011::0/80")]
+        [InlineData("2001:0DB8:ABCD:0013:0001:1111:0000:0000", "2001:db8:abcd:0011::0/80")]
+        [InlineData("2001:0DB8:ABCD:0000:0011:FFFF:1111:FFF0", "2001:db8:abcd:0011::0/64")]
+        [InlineData("2001:0DB8:ABCD:0012:0000:0000:1111:0001", "2001:db8:abcd:0011::0/128")]
+        public void IsBelongsToSubnet_InValid(string ip, string mask)
+        {
+            Assert.False(IPAddress.Parse(ip).IsBelongsToSubnet(mask));
+        }
+
     }
 }
