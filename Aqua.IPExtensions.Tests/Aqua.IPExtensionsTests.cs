@@ -246,8 +246,8 @@ namespace Aqua.IPExtensions.Tests
         }
 
         [Theory]
-        [InlineData("200.254.1.99")]
-        [InlineData("10.10.0.88")]
+        [InlineData("169.254.1.99")]
+        [InlineData("169.254.0.88")]
         [InlineData("fe81:ffff:ffff:ffff:ffff:ffff:1111:ffff")]
         [InlineData("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")]
         public void IsLinkLocalAddress_Valid(string ip)
@@ -256,8 +256,8 @@ namespace Aqua.IPExtensions.Tests
         }
 
         [Theory]
-        [InlineData("169.254.1.99")]
-        [InlineData("169.254.0.88")]
+        [InlineData("200.254.1.99")]
+        [InlineData("10.10.0.88")]
         [InlineData("fe79:ffff:ffff:ffff:ffff:ffff:1111:ffff")]
         [InlineData("fe55:ffff:ffff:ffff:ffff:ffff:ffff:ffff")]
         public void IsLinkLocalAddress_InValid(string ip)
